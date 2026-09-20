@@ -2,7 +2,7 @@
 
 `ai` is the OAuth/MCP trust boundary of the seven-repository Gapwise product ecosystem. It exposes stateless public University of Toronto campus intelligence plus explicitly delegated, minimized student context and bounded actions to compatible AI clients. It does not replace deterministic Gapwise product logic, the public campus API, or the public SDKs.
 
-All seven first-party product repositories are owned by the **Gapwise for UofT** GitHub organization (`Gapwise-for-UofT`). Organization-wide GitHub defaults live in the separate `.github` repository. Andrew Muratov remains the creator and primary maintainer.
+All seven first-party product repositories are owned by the **Gapwise** GitHub organization (`Gapwise-for-UofT`). Organization-wide GitHub defaults live in the separate `.github` repository. Andrew Muratov remains the creator and primary maintainer.
 
 ## Connected surfaces
 
@@ -23,7 +23,7 @@ All seven first-party product repositories are owned by the **Gapwise for UofT**
 
 ## Product scope
 
-Gapwise timetable identity supports UTM, UTSG, UTSC, and mixed-campus schedules. Public campus intelligence exposed by this repository remains UTM-focused because the current canonical first-party map/routing/data layer is UTM-focused. AI must not infer equivalent St. George or Scarborough routing coverage merely because a timetable can contain those campuses.
+Gapwise delegated timetable context supports UTM, UTSG, UTSC, and mixed-campus schedules. The stateless public building, place, route, and gap-window tools in this repository currently expose UTM data only. AI must preserve non-UTM campus identity and must not infer equivalent St. George or Scarborough public-tool or routing coverage.
 
 ## Public SDK state
 

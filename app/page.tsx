@@ -24,7 +24,7 @@ export default function HomePage() {
               <br />delegated <span style={{ color: "#8b5cf6" }}>carefully.</span>
             </h1>
             <p style={{ maxWidth: 680, margin: 0, color: "#aaa0b2", fontSize: 17, lineHeight: 1.65 }}>
-              Permissioned, provider-neutral MCP access for explicitly delegated Gapwise student context. Search schedule and course context, find realistic availability, discover source-backed UTM places, and preserve Gapwise route and assessment uncertainty. Academic meetings stay read-only; Personal Items are retired.
+              Permissioned, provider-neutral MCP access for explicitly delegated University of Toronto schedule context. Find realistic availability across UTM, UTSG, UTSC, or mixed-campus timetables; use the current UTM-scoped public place and route tools without extending their claims to other campuses. Academic meetings stay read-only; Personal Items are retired.
             </p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: 32 }}>
               <a href="https://docs.gapwise.ca/ai/connect" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", minHeight: 44, padding: "0 18px", border: "1px solid #9b74f8", borderRadius: 10, background: "#7c4df0", color: "white", textDecoration: "none", fontSize: 13, fontWeight: 700 }}>Connect an AI client →</a>
@@ -52,7 +52,7 @@ export default function HomePage() {
 
         <section style={{ display: "grid", gridTemplateColumns: "repeat(3,minmax(0,1fr))", gap: 14, marginTop: 16 }}>
           {[
-            ["Search before guessing", "Resolve delegated courses, sections, rooms, buildings, and source-backed UTM places with deterministic search/context tools."],
+            ["Search before guessing", "Resolve delegated courses, sections, rooms, and campus identity across U of T; use source-backed public place tools where their UTM scope applies."],
             ["Respect schedule semantics", "RES entries are possible assessment windows, not weekly commitments. Ordinary TBA-location classes still block their scheduled time."],
             ["Keep uncertainty intact", "Unknown hours stay unknown, approximate routes stay approximate, and Gapwise gap budgets and warnings remain authoritative."],
           ].map(([title, copy]) => (
