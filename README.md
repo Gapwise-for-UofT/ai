@@ -173,11 +173,11 @@ The JavaScript/TypeScript SDK is published on npm and JSR; the Python SDK is pub
 | **[`android`](https://github.com/Gapwise-for-UofT/android)** | Native Kotlin + Jetpack Compose Android client | Android app |
 | **[`ios`](https://github.com/Gapwise-for-UofT/ios)** | Native Swift + SwiftUI iOS client | iOS app |
 | **[`ai`](https://github.com/Gapwise-for-UofT/ai)** | OAuth/MCP layer for public University of Toronto campus intelligence and delegated student context | [ai.gapwise.ca](https://ai.gapwise.ca) |
-| **[`data`](https://github.com/Gapwise-for-UofT/data)** | Canonical public UTM campus data, provenance, schemas, validation, and distribution | [data.gapwise.ca](https://data.gapwise.ca) |
+| **[`data`](https://github.com/Gapwise-for-UofT/data)** | Canonical public University of Toronto campus data, provenance, schemas, validation, and distribution | [data.gapwise.ca](https://data.gapwise.ca) |
 | **[`docs`](https://github.com/Gapwise-for-UofT/docs)** | Canonical public developer documentation | [docs.gapwise.ca](https://docs.gapwise.ca) |
 | **[`status`](https://github.com/Gapwise-for-UofT/status)** | Independent service-health monitoring and incident communication | [status.gapwise.ca](https://status.gapwise.ca) |
 
-All seven first-party product repositories are owned by the **Gapwise for UofT** GitHub organization (`Gapwise-for-UofT`). Organization-wide GitHub defaults live in [`.github`](https://github.com/Gapwise-for-UofT/.github). Andrew Muratov remains the creator and primary maintainer.
+All seven first-party product repositories are owned by the **Gapwise** GitHub organization (`Gapwise-for-UofT`). Organization-wide GitHub defaults live in [`.github`](https://github.com/Gapwise-for-UofT/.github). Andrew Muratov remains the creator and primary maintainer.
 
 ---
 
