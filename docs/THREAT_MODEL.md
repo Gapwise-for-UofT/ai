@@ -4,7 +4,7 @@
 
 - user-scoped OAuth access tokens;
 - minimized AI schedule snapshots;
-- AI-managed personal timetable actions;
+- queued gap-preference actions;
 - server-only AI data-encryption key;
 - user consent/revocation state.
 
@@ -32,7 +32,7 @@ A compromised Gapwise AI runtime can observe delegated plaintext during tool cal
 Browser delegation endpoints allow only the configured Gapwise origin and use bearer authentication. MCP endpoints use OAuth bearer authentication rather than ambient cookies.
 
 ### Destructive model behavior
-Academic meetings are immutable through AI tools. Deletes apply only to personal items and remain queued until Gapwise applies them. Provider-side confirmation is additive, not relied on as the sole safety control.
+Academic meetings are immutable through AI tools. The current write surface queues only a bounded gap-preference update; it does not expose a delete tool. Provider-side confirmation is additive, not relied on as the sole safety control.
 
 ### Excessive collection
 Snapshots are minimized, capped, versioned, revocable, and never include friend or location data. Disabling delegation deletes the stored snapshot and queued actions.

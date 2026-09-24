@@ -6,7 +6,7 @@
 - Missing/invalid/expired bearer token: `401`.
 - No AI delegation or revoked delegation: private tools return an explicit authorization error.
 - Stale snapshot revision on write: action is rejected.
-- Unknown timetable/personal-item identifier: fail; never guess.
+- Unknown timetable identifier: fail; never guess.
 - Decryption/authentication failure: fail; never return partial plaintext.
 
 ## Logging policy

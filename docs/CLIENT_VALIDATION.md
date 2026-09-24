@@ -23,8 +23,8 @@ For each client, record date, tester, product/plan/workspace, connector identifi
 - single-day availability search;
 - weekly opportunity search;
 - feasibility check;
-- supported create/update/delete personal-item flow;
-- supported preference update;
+- supported gap-preference update and application of the queued action;
+- absence of retired Personal Item tools;
 - no-delegation behavior;
 - read-only permissions;
 - write-disabled permissions;

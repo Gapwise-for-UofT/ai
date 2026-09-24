@@ -4,7 +4,7 @@ This document is the concise source for user-facing connector disclosures.
 
 ## Data the connector may receive when the user enables it
 
-Depending on explicit Gapwise permissions: normalized academic meeting facts; selected personal timetable items; selected gap/routing preferences; deterministic Gapwise gap assessments; snapshot revision/freshness metadata; and queued personal-item/preference changes requested through the connected assistant.
+Depending on explicit Gapwise permissions: normalized academic meeting facts; selected gap/routing preferences; deterministic Gapwise gap assessments; snapshot revision/freshness metadata; and queued gap-preference changes requested through the connected assistant. Retired Personal Item tools do not expose legacy items to the current connector.
 
 ## Data deliberately excluded
 

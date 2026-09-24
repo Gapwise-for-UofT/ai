@@ -7,7 +7,7 @@ Reviewers should understand these intentional behaviors:
 - Public campus tools are stateless and never require private student context.
 - Private tools require explicit delegation and a verified user-scoped OAuth client.
 - Academic meetings cannot be changed by an AI client.
-- Personal-item/preference writes are queued, typed, permission-gated, and revision-bound.
+- The sole current write updates gap preferences; it is queued, typed, permission-gated, and revision-bound. Personal Item tools are retired.
 - Route accessibility/availability uncertainty must be preserved, not upgraded by the model.
 - Revocation is expected to make subsequent private tool calls fail.
 

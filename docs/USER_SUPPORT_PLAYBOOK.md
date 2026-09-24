@@ -10,9 +10,9 @@ Verify the user is signed in to Gapwise, AI delegation is enabled, the client re
 
 Confirm the timetable is present and current in Gapwise and that the corresponding AI read permission is delegated. Gapwise AI intentionally does not guess missing source data.
 
-## A personal-item write fails
+## A gap-preference update fails
 
-Refresh the current Gapwise AI context/revision and retry only if the requested block still passes permission and conflict/transition checks. Stale or unsafe writes are intended to fail closed.
+Refresh the current Gapwise AI context/revision and retry only if the requested preference change still passes permission and validation checks. Stale or unsafe writes are intended to fail closed. Personal Item writes are retired.
 
 ## Academic class cannot be edited
 
