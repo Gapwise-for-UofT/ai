@@ -27,7 +27,7 @@ Release test:
 5. Verify `get_my_day` returns exact source-backed meetings and no undelegated personal data.
 6. If gap-plan sharing is enabled, verify `get_my_gap_plan` preserves Gapwise's deterministic route status/confidence and timing fields exactly.
 7. With write permissions still off, verify write tools fail closed.
-8. Enable personal-item write permission, create a test personal item, then open Gapwise and verify the queued action is validated/applied and the subsequent read reflects a newer snapshot revision.
+8. Enable gap-preference write permission, queue a bounded preference update, then open Gapwise and verify the action is validated/applied and the subsequent read reflects a newer snapshot revision.
 9. Verify imported academic meetings cannot be edited through any exposed tool.
 10. Revoke AI access in Gapwise and verify the connector can no longer retrieve delegated data.
 

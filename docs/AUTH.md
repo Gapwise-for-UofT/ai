@@ -17,7 +17,7 @@ An MCP bearer token is accepted only when all of the following hold:
 
 The audience is not granted merely because a client registered with Supabase. Gapwise's custom access-token hook checks the exact `(user_id, client_id)` against `ai_oauth_clients`; only a client the user approved through the Gapwise consent flow receives the MCP audience at token issuance. Unapproved OAuth clients and normal Gapwise browser sessions keep Supabase's normal audience and fail the MCP audience check.
 
-The `email` OAuth scope is an identity/discovery scope supported by Supabase, not a Gapwise timetable permission. Fine-grained schedule, personal-item, gap-plan, routing, and write permissions remain in the explicitly delegated Gapwise AI snapshot and database policies. Gapwise does not invent unsupported custom OAuth scopes.
+The `email` OAuth scope is an identity/discovery scope supported by Supabase, not a Gapwise timetable permission. Fine-grained schedule, gap-plan, routing, and gap-preference write permissions remain in the explicitly delegated Gapwise AI snapshot and database policies. Gapwise does not invent unsupported custom OAuth scopes.
 
 Production requests through either `ai.gapwise.ca` or the Vercel infrastructure alias resolve to the same canonical protected-resource identifier.
 
