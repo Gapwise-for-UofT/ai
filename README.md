@@ -6,7 +6,7 @@
 
 ### Permissioned intelligence on top of deterministic Gapwise truth.
 
-**The provider-neutral Model Context Protocol (MCP) layer for public University of Toronto campus intelligence and explicitly delegated Gapwise student context.**
+**The provider-neutral Model Context Protocol (MCP) layer for public Gapwise campus intelligence and explicitly delegated student context.**
 
 [![AI Service](https://img.shields.io/badge/AI_Service-ai.gapwise.ca-8B5CF6?style=for-the-badge&logo=vercel&logoColor=white)](https://ai.gapwise.ca/api/health)
 [![MCP](https://img.shields.io/badge/MCP-Streamable_HTTP-8B5CF6?style=for-the-badge)](https://ai.gapwise.ca/api/mcp)
@@ -24,7 +24,7 @@
 
 ## What Gapwise AI is
 
-Gapwise AI is the provider-neutral AI integration layer of **Gapwise**, a privacy-first timetable and campus-intelligence platform for University of Toronto students.
+Gapwise AI is the provider-neutral AI integration layer of **Gapwise**, a privacy-first timetable and campus-intelligence platform for university students at U of T, Carleton, TMU, Queen's, and Laurier.
 
 The main [`gapwise`](https://github.com/Gapwise-for-UofT/gapwise) platform owns canonical student state and deterministic timetable/campus calculations. [`android`](https://github.com/Gapwise-for-UofT/android) and [`ios`](https://github.com/Gapwise-for-UofT/ios) provide native clients. Gapwise AI exposes a narrow remote MCP interface to bounded context rather than becoming a second timetable, routing, or planning engine.
 
@@ -44,7 +44,7 @@ https://ai.gapwise.ca/api/mcp
 
 The release surface contains **20 tools**.
 
-### Public, stateless University of Toronto campus intelligence
+### Public, stateless campus intelligence (currently UTM)
 
 These seven tools require no private Gapwise account context:
 
@@ -149,7 +149,7 @@ Gapwise AI does **not** require an OpenAI or Anthropic API key for normal connec
 
 ## Public developer platform
 
-Applications that need conventional non-MCP University of Toronto campus intelligence can use the canonical public API or first-party SDKs:
+Applications that need conventional non-MCP Gapwise campus intelligence can use the canonical public API or first-party SDKs:
 
 ```bash
 npm install @gapwise/sdk@0.1.1
@@ -173,7 +173,7 @@ The JavaScript/TypeScript SDK is published on npm and JSR; the Python SDK is pub
 | **[`android`](https://github.com/Gapwise-for-UofT/android)** | Native Kotlin + Jetpack Compose Android client | Android app |
 | **[`ios`](https://github.com/Gapwise-for-UofT/ios)** | Native Swift + SwiftUI iOS client | iOS app |
 | **[`ai`](https://github.com/Gapwise-for-UofT/ai)** | OAuth/MCP layer for public University of Toronto campus intelligence and delegated student context | [ai.gapwise.ca](https://ai.gapwise.ca) |
-| **[`data`](https://github.com/Gapwise-for-UofT/data)** | Canonical public University of Toronto campus data, provenance, schemas, validation, and distribution | [data.gapwise.ca](https://data.gapwise.ca) |
+| **[`data`](https://github.com/Gapwise-for-UofT/data)** | Canonical public multi-university campus data, provenance, schemas, validation, and distribution | [data.gapwise.ca](https://data.gapwise.ca) |
 | **[`docs`](https://github.com/Gapwise-for-UofT/docs)** | Canonical public developer documentation | [docs.gapwise.ca](https://docs.gapwise.ca) |
 | **[`status`](https://github.com/Gapwise-for-UofT/status)** | Independent service-health monitoring and incident communication | [status.gapwise.ca](https://status.gapwise.ca) |
 
