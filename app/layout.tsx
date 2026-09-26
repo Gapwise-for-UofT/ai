@@ -7,6 +7,27 @@ export const metadata: Metadata = {
   description: "Permissioned, provider-neutral MCP integration service for Gapwise.",
   icons: { icon: "/favicon.svg" },
   robots: { index: false, follow: false },
+  openGraph: {
+    title: "Gapwise AI",
+    description: "Permissioned, provider-neutral MCP integration service for Gapwise.",
+    url: "https://ai.gapwise.ca",
+    siteName: "Gapwise AI",
+    type: "website",
+    images: [
+      {
+        url: "https://ai.gapwise.ca/og-card.png",
+        width: 1200,
+        height: 630,
+        alt: "Gapwise AI — Permissioned, provider-neutral MCP integration service for Gapwise",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Gapwise AI",
+    description: "Permissioned, provider-neutral MCP integration service for Gapwise.",
+    images: ["https://ai.gapwise.ca/og-card.png"],
+  },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
