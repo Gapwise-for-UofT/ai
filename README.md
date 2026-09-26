@@ -24,7 +24,7 @@
 
 ## What Gapwise AI is
 
-Gapwise AI is the provider-neutral AI integration layer of **Gapwise**, a free and open-source timetable and campus-intelligence platform for university students across 7 Canadian universities (University of Toronto, Carleton University, Toronto Metropolitan University, Queen's University, Wilfrid Laurier University, York University, and McMaster University).
+Gapwise AI is the provider-neutral AI integration layer of **Gapwise**, a free and open-source timetable and campus-intelligence platform for university students across 11 Canadian universities (University of Toronto, Carleton University, Toronto Metropolitan University, Queen's University, Wilfrid Laurier University, York University, McMaster University, Western University, University of Guelph, University of Ottawa, and Brock University).
 
 The main [`gapwise`](https://github.com/GapwiseHQ/gapwise) platform owns canonical student state and deterministic timetable/campus calculations. [`android`](https://github.com/GapwiseHQ/android) and [`ios`](https://github.com/GapwiseHQ/ios) provide native clients. Gapwise AI exposes a narrow remote MCP interface to bounded context rather than becoming a second timetable, routing, or planning engine.
 
