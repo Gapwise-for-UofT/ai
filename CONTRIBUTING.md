@@ -25,7 +25,7 @@ Requirements:
 - npm
 
 ```bash
-git clone https://github.com/Gapwise-for-UofT/ai.git
+git clone https://github.com/GapwiseHQ/ai.git
 cd ai
 npm ci
 cp .env.example .env.local

@@ -16,7 +16,7 @@
 
 <br />
 
-**[Gapwise](https://gapwise.ca)** · **[Android](https://github.com/Gapwise-for-UofT/android)** · **[iOS](https://github.com/Gapwise-for-UofT/ios)** · **[AI](https://ai.gapwise.ca)** · **[Data](https://data.gapwise.ca)** · **[Docs](https://docs.gapwise.ca)** · **[Status](https://status.gapwise.ca)**
+**[Gapwise](https://gapwise.ca)** · **[Android](https://github.com/GapwiseHQ/android)** · **[iOS](https://github.com/GapwiseHQ/ios)** · **[AI](https://ai.gapwise.ca)** · **[Data](https://data.gapwise.ca)** · **[Docs](https://docs.gapwise.ca)** · **[Status](https://status.gapwise.ca)**
 
 </div>
 
@@ -26,7 +26,7 @@
 
 Gapwise AI is the provider-neutral AI integration layer of **Gapwise**, a privacy-first timetable and campus-intelligence platform for university students at U of T, Carleton, TMU, Queen's, and Laurier.
 
-The main [`gapwise`](https://github.com/Gapwise-for-UofT/gapwise) platform owns canonical student state and deterministic timetable/campus calculations. [`android`](https://github.com/Gapwise-for-UofT/android) and [`ios`](https://github.com/Gapwise-for-UofT/ios) provide native clients. Gapwise AI exposes a narrow remote MCP interface to bounded context rather than becoming a second timetable, routing, or planning engine.
+The main [`gapwise`](https://github.com/GapwiseHQ/gapwise) platform owns canonical student state and deterministic timetable/campus calculations. [`android`](https://github.com/GapwiseHQ/android) and [`ios`](https://github.com/GapwiseHQ/ios) provide native clients. Gapwise AI exposes a narrow remote MCP interface to bounded context rather than becoming a second timetable, routing, or planning engine.
 
 > **Gapwise owns the facts. Connected AI clients reason over deterministic public campus data and explicitly delegated private context.**
 
@@ -169,15 +169,15 @@ The JavaScript/TypeScript SDK is published on npm and JSR; the Python SDK is pub
 
 | Repository | Role | Primary surface |
 | --- | --- | --- |
-| **[`gapwise`](https://github.com/Gapwise-for-UofT/gapwise)** | Core web/PWA, canonical timetable/gap/routing semantics, public API, OpenAPI, and SDK source | [gapwise.ca](https://gapwise.ca) / [api.gapwise.ca](https://api.gapwise.ca/v1) |
-| **[`android`](https://github.com/Gapwise-for-UofT/android)** | Native Kotlin + Jetpack Compose Android client | Android app |
-| **[`ios`](https://github.com/Gapwise-for-UofT/ios)** | Native Swift + SwiftUI iOS client | iOS app |
-| **[`ai`](https://github.com/Gapwise-for-UofT/ai)** | OAuth/MCP layer for public University of Toronto campus intelligence and delegated student context | [ai.gapwise.ca](https://ai.gapwise.ca) |
-| **[`data`](https://github.com/Gapwise-for-UofT/data)** | Canonical public multi-university campus data, provenance, schemas, validation, and distribution | [data.gapwise.ca](https://data.gapwise.ca) |
-| **[`docs`](https://github.com/Gapwise-for-UofT/docs)** | Canonical public developer documentation | [docs.gapwise.ca](https://docs.gapwise.ca) |
-| **[`status`](https://github.com/Gapwise-for-UofT/status)** | Independent service-health monitoring and incident communication | [status.gapwise.ca](https://status.gapwise.ca) |
+| **[`gapwise`](https://github.com/GapwiseHQ/gapwise)** | Core web/PWA, canonical timetable/gap/routing semantics, public API, OpenAPI, and SDK source | [gapwise.ca](https://gapwise.ca) / [api.gapwise.ca](https://api.gapwise.ca/v1) |
+| **[`android`](https://github.com/GapwiseHQ/android)** | Native Kotlin + Jetpack Compose Android client | Android app |
+| **[`ios`](https://github.com/GapwiseHQ/ios)** | Native Swift + SwiftUI iOS client | iOS app |
+| **[`ai`](https://github.com/GapwiseHQ/ai)** | OAuth/MCP layer for public University of Toronto campus intelligence and delegated student context | [ai.gapwise.ca](https://ai.gapwise.ca) |
+| **[`data`](https://github.com/GapwiseHQ/data)** | Canonical public multi-university campus data, provenance, schemas, validation, and distribution | [data.gapwise.ca](https://data.gapwise.ca) |
+| **[`docs`](https://github.com/GapwiseHQ/docs)** | Canonical public developer documentation | [docs.gapwise.ca](https://docs.gapwise.ca) |
+| **[`status`](https://github.com/GapwiseHQ/status)** | Independent service-health monitoring and incident communication | [status.gapwise.ca](https://status.gapwise.ca) |
 
-All seven first-party product repositories are owned by the **Gapwise** GitHub organization (`Gapwise-for-UofT`). Organization-wide GitHub defaults live in [`.github`](https://github.com/Gapwise-for-UofT/.github). Andrew Muratov remains the creator and primary maintainer.
+All seven first-party product repositories are owned by the **Gapwise** GitHub organization (`GapwiseHQ`). Organization-wide GitHub defaults live in [`.github`](https://github.com/GapwiseHQ/.github). Andrew Muratov remains the creator and primary maintainer.
 
 ---
 
@@ -186,7 +186,7 @@ All seven first-party product repositories are owned by the **Gapwise** GitHub o
 Requirements: Node.js 24.x, npm, and a compatible Supabase project for authenticated/delegation flows.
 
 ```bash
-git clone https://github.com/Gapwise-for-UofT/ai.git
+git clone https://github.com/GapwiseHQ/ai.git
 cd ai
 npm ci
 cp .env.example .env.local
