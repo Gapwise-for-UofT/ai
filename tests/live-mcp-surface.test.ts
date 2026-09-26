@@ -26,6 +26,11 @@ const EXPECTED_PUBLIC_TOOLS = [
   "get_utm_place",
   "route_between_utm_buildings",
   "plan_utm_gap_window",
+  "list_supported_universities",
+  "list_campus_buildings",
+  "search_campus_buildings",
+  "get_campus_building",
+  "route_between_campus_buildings",
 ] as const;
 
 describe("live MCP surface contract", () => {
@@ -56,7 +61,7 @@ describe("live MCP surface contract", () => {
     }
   });
 
-  it("registers exactly seven stateless public campus tools through the shared handler", async () => {
+  it("registers exactly twelve stateless public campus tools through the shared handler", async () => {
     const [wrapperSource, publicSource] = await Promise.all([
       readFile("src/audit/mcp-handler.ts", "utf8"),
       readFile("src/mcp/public-campus-tools.ts", "utf8"),
@@ -78,9 +83,9 @@ describe("live MCP surface contract", () => {
     expect(source).not.toContain("securitySchemes");
   });
 
-  it("locks the complete live surface to 20 unique tools", () => {
+  it("locks the complete live surface to 25 unique tools", () => {
     const all = [...EXPECTED_PUBLIC_TOOLS, ...EXPECTED_PRIVATE_TOOLS];
-    expect(all).toHaveLength(20);
-    expect(new Set(all).size).toBe(20);
+    expect(all).toHaveLength(25);
+    expect(new Set(all).size).toBe(25);
   });
 });

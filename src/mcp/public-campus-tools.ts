@@ -1,8 +1,11 @@
 import type { createMcpHandler } from "mcp-handler";
 import { z } from "zod";
 import {
+  getCampusBuilding,
   getUtmBuilding,
   getUtmPlace,
+  listCampusBuildings,
+  listSupportedUniversities,
   listUtmBuildings,
   planUtmGapWindow,
   PublicBuildingOutputSchema,
@@ -13,7 +16,10 @@ import {
   PublicPlaceOutputSchema,
   PublicPlaceSearchOutputSchema,
   PublicRouteOutputSchema,
+  PublicUniversitiesOutputSchema,
+  routeBetweenCampusBuildings,
   routeBetweenUtmBuildings,
+  searchCampusBuildings,
   searchUtmBuildings,
   searchUtmPlaces,
 } from "@/src/domain/public-campus";
@@ -25,6 +31,7 @@ import {
   formatPublicPlace,
   formatPublicPlaceSearch,
   formatPublicRoute,
+  formatPublicUniversities,
 } from "@/src/mcp/public-campus-formatters";
 
 type McpRegistrar = Parameters<Parameters<typeof createMcpHandler>[0]>[0];
@@ -240,6 +247,144 @@ export function registerPublicCampusTools(server: McpRegistrar): void {
       try {
         const value = await planUtmGapWindow(args);
         return ok(formatPublicGapPlan(value.gapPlan), value);
+      } catch (error) {
+        return failure(error);
+      }
+    },
+  );
+
+  server.registerTool(
+    "list_supported_universities",
+    {
+      title: "List supported universities across Gapwise",
+      description:
+        "List all universities supported by the Gapwise platform, including canonical editions, campus models, and routing capabilities. This is public stateless campus data.",
+      inputSchema: z.object({}).strict(),
+      outputSchema: PublicUniversitiesOutputSchema,
+      annotations: { readOnlyHint: true, openWorldHint: true },
+    },
+    async () => {
+      try {
+        const value = await listSupportedUniversities();
+        return ok(formatPublicUniversities(value.universities), value);
+      } catch (error) {
+        return failure(error);
+      }
+    },
+  );
+
+  server.registerTool(
+    "list_campus_buildings",
+    {
+      title: "List campus buildings known to Gapwise",
+      description:
+        "List canonical buildings for a specified university and campus, including routing/accessibility coverage and provenance facts. When university or campus is omitted, defaults to UTM.",
+      inputSchema: z
+        .object({
+          university: z.string().optional(),
+          campus: z.string().optional(),
+        })
+        .strict(),
+      outputSchema: PublicBuildingsOutputSchema,
+      annotations: { readOnlyHint: true, openWorldHint: true },
+    },
+    async ({ university, campus }) => {
+      try {
+        const value = await listCampusBuildings({ university, campus });
+        const scope = university ? `${university}${campus ? `/${campus}` : ""}` : undefined;
+        return ok(formatPublicBuildings(value.buildings, scope), value);
+      } catch (error) {
+        return failure(error);
+      }
+    },
+  );
+
+  server.registerTool(
+    "search_campus_buildings",
+    {
+      title: "Search campus buildings with Gapwise",
+      description:
+        "Search Gapwise's building directory across any supported university or campus by code, official name, or alias. Results are ranked deterministically and include match reasons.",
+      inputSchema: z
+        .object({
+          query: z.string().min(1).max(240),
+          university: z.string().optional(),
+          campus: z.string().optional(),
+          maxResults: z.number().int().min(1).max(20).default(8),
+        })
+        .strict(),
+      outputSchema: PublicBuildingSearchOutputSchema,
+      annotations: { readOnlyHint: true, openWorldHint: true },
+    },
+    async ({ query, university, campus, maxResults }) => {
+      try {
+        const value = await searchCampusBuildings(query, { university, campus, maxResults });
+        const summary = value.results.length
+          ? [
+              `Gapwise building search for “${query}”:`,
+              ...value.results.map(
+                (result) =>
+                  `- ${result.building.code} — ${result.building.name} (score ${result.score}; matched ${result.matchReasons.join(", ")})`,
+              ),
+            ].join("\n")
+          : `No buildings matched “${query}”.`;
+        return ok(summary, value);
+      } catch (error) {
+        return failure(error);
+      }
+    },
+  );
+
+  server.registerTool(
+    "get_campus_building",
+    {
+      title: "Get details for a campus building with Gapwise",
+      description:
+        "Look up a single canonical building across any supported university and campus by code, official name, or alias.",
+      inputSchema: z
+        .object({
+          building: z.string().min(1).max(240),
+          university: z.string().optional(),
+          campus: z.string().optional(),
+        })
+        .strict(),
+      outputSchema: PublicBuildingOutputSchema,
+      annotations: { readOnlyHint: true, openWorldHint: true },
+    },
+    async ({ building, university, campus }) => {
+      try {
+        const value = await getCampusBuilding(building, { university, campus });
+        return ok(formatPublicBuilding(value.building), value);
+      } catch (error) {
+        return failure(error);
+      }
+    },
+  );
+
+  server.registerTool(
+    "route_between_campus_buildings",
+    {
+      title: "Route between campus buildings with Gapwise",
+      description:
+        "Ask Gapwise's deterministic campus routing engine for a building-to-building route across any supported university and campus. Returns routed/approximate/unavailable status, verification, time/distance and warnings without exposing the routing graph.",
+      inputSchema: z
+        .object({
+          from: z.string().min(1).max(240),
+          to: z.string().min(1).max(240),
+          university: z.string().optional(),
+          campus: z.string().optional(),
+          mode: z.enum(["fastest", "prefer-indoor", "step-free"]).optional(),
+          walkingSpeedMps: z.number().min(0.5).max(3).optional(),
+          transitionBufferMinutes: z.number().int().min(0).max(60).optional(),
+        })
+        .strict(),
+      outputSchema: PublicRouteOutputSchema,
+      annotations: { readOnlyHint: true, openWorldHint: true },
+    },
+    async (args) => {
+      try {
+        const value = await routeBetweenCampusBuildings(args);
+        return ok(formatPublicRoute(value.route), value);
       } catch (error) {
         return failure(error);
       }
