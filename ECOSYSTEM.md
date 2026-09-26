@@ -29,8 +29,8 @@ Gapwise delegated timetable context supports UTM, UTSG, UTSC, and mixed-campus s
 
 Public campus developers use equal first-party SDKs owned by the core repository:
 
-- TypeScript `@gapwise/sdk`: version `0.1.1` is published on both npm and JSR through provenance-backed GitHub Actions publishing. Node, Bun, and Deno are runtime targets for one portable TypeScript implementation, not separate SDKs.
-- Python `gapwise==0.1.0`: published on PyPI through Trusted Publishing.
+- TypeScript `@gapwise/sdk`: version `0.1.2` is published on both npm and JSR through provenance-backed GitHub Actions publishing. Node, Bun, and Deno are runtime targets for one portable TypeScript implementation, not separate SDKs.
+- Python `gapwise==0.1.1`: published on PyPI through Trusted Publishing.
 
 These SDKs intentionally expose public campus intelligence only. They do not grant access to private student schedules, delegation state, queued actions, or AI authorization.
 
