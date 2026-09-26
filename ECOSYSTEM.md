@@ -2,18 +2,18 @@
 
 `ai` is the OAuth/MCP trust boundary of the seven-repository Gapwise product ecosystem. It exposes stateless public University of Toronto campus intelligence plus explicitly delegated, minimized student context and bounded actions to compatible AI clients. It does not replace deterministic Gapwise product logic, the public campus API, or the public SDKs.
 
-All seven first-party product repositories are owned by the **Gapwise** GitHub organization (`Gapwise-for-UofT`). Organization-wide GitHub defaults live in the separate `.github` repository. Andrew Muratov remains the creator and primary maintainer.
+All seven first-party product repositories are owned by the **Gapwise** GitHub organization (`GapwiseHQ`). Organization-wide GitHub defaults live in the separate `.github` repository. Andrew Muratov remains the creator and primary maintainer.
 
 ## Connected surfaces
 
-- GitHub organization: `https://github.com/Gapwise-for-UofT`
-- Core product/API/SDK source: `Gapwise-for-UofT/gapwise`
-- Native Android client: `Gapwise-for-UofT/android`
-- Native iOS client: `Gapwise-for-UofT/ios`
-- AI/MCP source: `Gapwise-for-UofT/ai`
-- Campus data/provenance source: `Gapwise-for-UofT/data`
-- Developer documentation source: `Gapwise-for-UofT/docs`
-- Operational status source: `Gapwise-for-UofT/status`
+- GitHub organization: `https://github.com/GapwiseHQ`
+- Core product/API/SDK source: `GapwiseHQ/gapwise`
+- Native Android client: `GapwiseHQ/android`
+- Native iOS client: `GapwiseHQ/ios`
+- AI/MCP source: `GapwiseHQ/ai`
+- Campus data/provenance source: `GapwiseHQ/data`
+- Developer documentation source: `GapwiseHQ/docs`
+- Operational status source: `GapwiseHQ/status`
 - Public API: `https://api.gapwise.ca/v1`
 - OpenAPI: `https://api.gapwise.ca/openapi.json`
 - Data/provenance: `https://data.gapwise.ca`
