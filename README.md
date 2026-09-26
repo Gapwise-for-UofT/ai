@@ -152,9 +152,9 @@ Gapwise AI does **not** require an OpenAI or Anthropic API key for normal connec
 Applications that need conventional non-MCP Gapwise campus intelligence can use the canonical public API or first-party SDKs:
 
 ```bash
-npm install @gapwise/sdk@0.1.1
-# JSR: @gapwise/sdk@0.1.1
-python -m pip install gapwise==0.1.0
+npm install @gapwise/sdk@0.1.2
+# JSR: @gapwise/sdk@0.1.2
+python -m pip install gapwise==0.1.1
 ```
 
 - API: `https://api.gapwise.ca/v1`
