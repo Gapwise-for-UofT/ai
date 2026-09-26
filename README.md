@@ -42,11 +42,11 @@ Canonical endpoint:
 https://ai.gapwise.ca/api/mcp
 ```
 
-The release surface contains **20 tools**.
+The release surface contains **25 tools**.
 
-### Public, stateless campus intelligence (currently UTM)
+### Public, stateless campus intelligence
 
-These seven tools require no private Gapwise account context:
+These twelve tools require no private Gapwise account context:
 
 - `list_utm_buildings`
 - `search_utm_buildings`
@@ -55,8 +55,13 @@ These seven tools require no private Gapwise account context:
 - `get_utm_place`
 - `route_between_utm_buildings`
 - `plan_utm_gap_window`
+- `list_supported_universities`
+- `list_campus_buildings`
+- `search_campus_buildings`
+- `get_campus_building`
+- `route_between_campus_buildings`
 
-They operate on deterministic public **UTM** campus data and never read a student's timetable, friends, precise location, or private sync state. University-wide timetable support elsewhere in Gapwise does not change the scope of these public UTM campus tools.
+They operate on deterministic public campus data across all supported universities and campuses (with legacy UTM tools delegating to UTM) and never read a student's timetable, friends, precise location, or private sync state.
 
 ### Permissioned private reads and planning
 

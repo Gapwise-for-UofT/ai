@@ -94,6 +94,33 @@ export const PublicBuildingSchema = z.object({
   accessibility: AccessibilitySchema,
   indoorRoomNodeCount: z.number().int().nonnegative(),
   provenance: z.array(ProvenanceSchema),
+  university: z.string().optional(),
+  campus: z.string().optional(),
+});
+
+export const PublicUniversitySchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  shortName: z.string(),
+  hostname: z.string(),
+  canonicalUrl: z.string(),
+  accentColor: z.string(),
+  campuses: z.array(
+    z.object({
+      id: z.string(),
+      name: z.string(),
+      shortName: z.string(),
+      city: z.string(),
+      isMainCampus: z.boolean(),
+      routable: z.boolean(),
+      buildingCount: z.number(),
+    }),
+  ),
+});
+
+export const PublicUniversitiesOutputSchema = z.object({
+  service: z.literal("gapwise-public-campus"),
+  universities: z.array(PublicUniversitySchema),
 });
 
 export const PublicBuildingsOutputSchema = z.object({
@@ -294,8 +321,41 @@ async function fetchJson(path: string, init?: RequestInit): Promise<unknown> {
   return body;
 }
 
-export async function listUtmBuildings() {
+export async function listSupportedUniversities() {
+  const raw = await fetchJson("/v1/universities");
+  const universities = Array.isArray((raw as any)?.data)
+    ? (raw as any).data
+    : Array.isArray((raw as any)?.universities)
+      ? (raw as any).universities
+      : [];
+  return PublicUniversitiesOutputSchema.parse({
+    service: "gapwise-public-campus",
+    universities,
+  });
+}
+
+export async function listCampusBuildings(options?: { university?: string; campus?: string }) {
+  if (options?.university || options?.campus) {
+    const params = new URLSearchParams();
+    if (options.university) params.set("university", options.university);
+    if (options.campus) params.set("campus", options.campus);
+    const q = params.toString() ? `?${params.toString()}` : "";
+    const raw = await fetchJson(`/v1/buildings${q}`);
+    const buildings = Array.isArray((raw as any)?.data)
+      ? (raw as any).data
+      : Array.isArray((raw as any)?.buildings)
+        ? (raw as any).buildings
+        : [];
+    return PublicBuildingsOutputSchema.parse({
+      service: "gapwise-public-campus",
+      buildings,
+    });
+  }
   return PublicBuildingsOutputSchema.parse(await fetchJson("/api/utm-buildings"));
+}
+
+export async function listUtmBuildings() {
+  return listCampusBuildings();
 }
 
 function normalizeSearch(value: string): string {
@@ -326,8 +386,14 @@ function buildingMatch(query: string, building: PublicBuilding) {
   return { score, reasons: [...new Set(reasons)] };
 }
 
-export async function searchUtmBuildings(query: string, maxResults = 8) {
-  const { buildings } = await listUtmBuildings();
+export async function searchCampusBuildings(
+  query: string,
+  options?: { university?: string; campus?: string; maxResults?: number },
+) {
+  const { buildings } = await listCampusBuildings({
+    university: options?.university,
+    campus: options?.campus,
+  });
   const results = buildings
     .map((building) => {
       const match = buildingMatch(query, building);
@@ -335,7 +401,7 @@ export async function searchUtmBuildings(query: string, maxResults = 8) {
     })
     .filter((item) => item.score > 0)
     .sort((a, b) => b.score - a.score || a.building.code.localeCompare(b.building.code))
-    .slice(0, maxResults);
+    .slice(0, options?.maxResults ?? 8);
   return PublicBuildingSearchOutputSchema.parse({
     service: "gapwise-public-campus",
     query,
@@ -343,9 +409,32 @@ export async function searchUtmBuildings(query: string, maxResults = 8) {
   });
 }
 
-export async function getUtmBuilding(query: string) {
+export async function searchUtmBuildings(query: string, maxResults = 8) {
+  return searchCampusBuildings(query, { maxResults });
+}
+
+export async function getCampusBuilding(
+  query: string,
+  options?: { university?: string; campus?: string },
+) {
+  if (options?.university || options?.campus) {
+    const params = new URLSearchParams();
+    if (options.university) params.set("university", options.university);
+    if (options.campus) params.set("campus", options.campus);
+    const q = params.toString() ? `?${params.toString()}` : "";
+    const raw = await fetchJson(`/v1/buildings/${encodeURIComponent(query)}${q}`);
+    const building = (raw as any)?.data ?? (raw as any)?.building;
+    return PublicBuildingOutputSchema.parse({
+      service: "gapwise-public-campus",
+      building,
+    });
+  }
   const params = new URLSearchParams({ q: query });
   return PublicBuildingOutputSchema.parse(await fetchJson(`/api/utm-building?${params.toString()}`));
+}
+
+export async function getUtmBuilding(query: string) {
+  return getCampusBuilding(query);
 }
 
 function placeMatch(query: string | undefined, place: PublicPlace) {
@@ -431,9 +520,11 @@ export async function getUtmPlace(id: string) {
   return PublicPlaceOutputSchema.parse(value);
 }
 
-export async function routeBetweenUtmBuildings(input: {
+export async function routeBetweenCampusBuildings(input: {
   from: string;
   to: string;
+  university?: string;
+  campus?: string;
   mode?: z.infer<typeof RouteModeSchema>;
   walkingSpeedMps?: number;
   transitionBufferMinutes?: number;
@@ -445,6 +536,23 @@ export async function routeBetweenUtmBuildings(input: {
       ? { transitionBufferMinutes: input.transitionBufferMinutes }
       : {}),
   };
+  if (input.university || input.campus) {
+    const raw = await fetchJson("/v1/routes", {
+      method: "POST",
+      body: JSON.stringify({
+        from: input.from,
+        to: input.to,
+        ...(input.university ? { university: input.university } : {}),
+        ...(input.campus ? { campus: input.campus } : {}),
+        preferences: Object.keys(preferences).length > 0 ? preferences : undefined,
+      }),
+    });
+    const route = (raw as any)?.data ?? (raw as any)?.route;
+    return PublicRouteOutputSchema.parse({
+      service: "gapwise-public-campus",
+      route,
+    });
+  }
   return PublicRouteOutputSchema.parse(
     await fetchJson("/api/utm-route", {
       method: "POST",
@@ -455,6 +563,16 @@ export async function routeBetweenUtmBuildings(input: {
       }),
     }),
   );
+}
+
+export async function routeBetweenUtmBuildings(input: {
+  from: string;
+  to: string;
+  mode?: z.infer<typeof RouteModeSchema>;
+  walkingSpeedMps?: number;
+  transitionBufferMinutes?: number;
+}) {
+  return routeBetweenCampusBuildings(input);
 }
 
 export async function planUtmGapWindow(input: {
